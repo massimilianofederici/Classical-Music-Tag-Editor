@@ -10,8 +10,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
+        VStack {
+           Button(action: {
+                self.load()
+            }) {
+                Text("Button title")
+            }
+        }
+    }
+    
+    func load(){
+        let audioFile = AudioFile().load(url: URL(fileURLWithPath: "/tmp/test.flac"))
+        Metadata().readFrom(fileID: audioFile!)
     }
 }
 
