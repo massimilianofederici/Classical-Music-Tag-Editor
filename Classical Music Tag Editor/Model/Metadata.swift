@@ -27,9 +27,11 @@ class Metadata {
     }
     
     func readFrom(fileID: AudioFileID) -> Dictionary<String, String> {
+        logger.info("Reading Metadata")
         var dict: CFDictionary? = nil
         var dataSize = UInt32(MemoryLayout<CFDictionary?>.size(ofValue: dict))
         AudioFileGetProperty(fileID, kAudioFilePropertyInfoDictionary, &dataSize, &dict)
+        logger.info("Found \(dict!)")
         return dict! as! Dictionary<String, String>
     }
 }
